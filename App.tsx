@@ -1,21 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, LogBox } from 'react-native';
+import { 
+  Montserrat_600SemiBold, 
+  Montserrat_700Bold, 
+  Montserrat_400Regular 
+} from '@expo-google-fonts/montserrat';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+import { PlayersProvider } from './src/contexts/players';
+import { Home } from './src/screens/home';
+
+// import { Routes } from './src/routes';
+
+export default function App(){
+  const [fontsLoaded] = useFonts({
+    Montserrat_600SemiBold, 
+    Montserrat_700Bold, 
+    Montserrat_400Regular
+  });
+
+  if(!fontsLoaded){
+    return <AppLoading/>
+  }
+
+  return(
+    <>
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      <PlayersProvider>
+        <Home />
+      </PlayersProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
