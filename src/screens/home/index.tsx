@@ -3,9 +3,7 @@ import {
   FlatList,
   KeyboardAvoidingView,
   Platform,
-  
   Text,
-  
   View
 } from 'react-native';
 
@@ -25,8 +23,10 @@ import { Load } from '../../components/Loading';
 export const Home = () => {
 
   const modalizeRef = useRef<Modalize>(null);
+  
   const [teamA, setTeamA] = useState<Players[]>([]);
   const [teamB, setTeamB] = useState<Players[]>([]);
+
   const [loading, SetLoading] = useState(false);
   const { 
     maxPlayers, 
@@ -58,20 +58,11 @@ export const Home = () => {
     SetLoading(true);
     const result = embaralhar(listPlayers);
 
+    let a: Players[] = result.splice(0, result.length / 2);
+    let b: Players[] = result.splice(result.length / 2);
 
-    let a: Players[] = [];
-    let b: Players[] = [];
-
-    for (let i = 0; i < result.length / 2 ; i ++) {
-      a.push(result[i]);
-    }
-
-    for (let k = result.length / 2; k > 0; k--) {
-      b.push(result[k]);
-    }
     setTeamA(a);
     setTeamB(b);
-    console.log(a, b);
     setDrawn(true);
 
     setInterval(() => {
