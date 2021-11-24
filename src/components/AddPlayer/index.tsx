@@ -26,7 +26,7 @@ export const AddPlayer = ({ onClose }: Props) => {
       name: name,
       id: listPlayers.length + 1,
     }
-
+    console.log(newValue);
     setListPlayers(prevState => [...prevState, newValue]);
     onClose();
   };

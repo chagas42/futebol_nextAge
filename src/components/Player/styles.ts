@@ -10,11 +10,7 @@ export const styles = StyleSheet.create({
     borderRadius:5,
     backgroundColor: '#fff',
     paddingHorizontal: 11,
-    marginBottom: 20,
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.8,
-    shadowRadius: 3,
+    
   },
   name: {
     flex: 1,
@@ -23,4 +19,13 @@ export const styles = StyleSheet.create({
     marginLeft: 18,
     color: '#E95958'
   },
+  shadow: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+  }, 
+  elevation: {
+    elevation: 5,
+  }
 });

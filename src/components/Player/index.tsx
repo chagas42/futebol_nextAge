@@ -2,6 +2,7 @@ import { FontAwesome, Fontisto } from '@expo/vector-icons';
 import React from 'react';
 
 import {
+  Platform,
   Text,
   TouchableOpacity,
   View
@@ -16,7 +17,7 @@ type Props = {
 
 export const Player = ({ name }: Props) => {
   return (
-    <TouchableOpacity style={[styles.container]}>
+    <TouchableOpacity style={[styles.container, Platform.OS === 'android' ? styles.elevation : styles.shadow]}>
       <FontAwesome
         name="user-circle"
         size={20}

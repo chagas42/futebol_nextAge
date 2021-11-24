@@ -3,7 +3,10 @@ import React from 'react';
 
 import {
   View,
-  Text
+  Text,
+  TouchableHighlight,
+  BackHandler,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { usePlayer } from '../../contexts/players';
 
@@ -11,28 +14,40 @@ import { styles } from './styles';
 
 export const Header = () => {
 
-  const { listPlayers, maxPlayers } = usePlayer();
+  const { listPlayers, maxPlayers, drawn } = usePlayer();
+
+  function onClose() {
+    BackHandler.exitApp();
+  };
 
   return (
     <View style={styles.header}>
-        <View style={styles.iconArea}>
+        <TouchableWithoutFeedback style={styles.iconArea} onPress={onClose} >
           <MaterialCommunityIcons
             name="chevron-left"
             size={38}
             color="#fff"
           />   
-        </View>
+        </TouchableWithoutFeedback>
         <View style={styles.headerContent}>
-          {(maxPlayers === 1) ?
-            <Text style={styles.playersNumber}>{listPlayers.length}</Text>
-            :
+          {!drawn ? 
+            <>
+              {(maxPlayers === 1) ?
+                <Text style={styles.playersNumber}>{listPlayers.length}</Text>
+                :
+                <View style={{flexDirection:'row', alignItems: 'center'}}>
+                  <Text style={styles.playersNumber}>{listPlayers.length}</Text>
+                  <Text style={styles.dash}>/</Text>
+                  <Text style={styles.max}>{maxPlayers.toFixed(0)}</Text>
+                </View>
+              }
+                <Text style={styles.description}>Number of Players</Text>
+            </>
+          :
             <View style={{flexDirection:'row', alignItems: 'center'}}>
-              <Text style={styles.playersNumber}>{listPlayers.length}</Text>
-              <Text style={styles.dash}>/</Text>
-              <Text style={styles.max}>{maxPlayers.toFixed(0)}</Text>
+              <Text style={[styles.playersNumber, { fontSize: 27 }]}>Drawn Players!</Text>
             </View>
           }
-            <Text style={styles.description}>Number of Players</Text>
           </View>
       </View>
   );

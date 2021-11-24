@@ -14,7 +14,7 @@ import { styles } from './styles';
 export const MaxPlayer = () => {
 
   const { setMaxPlayers, maxPlayers } = usePlayer();
-  const [ value, setValue ] = useState(1);
+  const [ value, setValue ] = useState(0);
 
   function handleActionButton() {
      setMaxPlayers(value);
@@ -28,10 +28,11 @@ export const MaxPlayer = () => {
         <Text style={styles.value}>{value.toFixed(0)}</Text>
         <Slider
           style={{ width: 200, height: 30, marginHorizontal: 15}}
-          minimumValue={1}
+          minimumValue={0}
           maximumValue={22}
+          step={2}
           value={value}
-          onValueChange={(v) => setValue(v)}
+          onValueChange={(v) => setValue(v )}
           minimumTrackTintColor="#E95958"
           maximumTrackTintColor="#fff"
         />
